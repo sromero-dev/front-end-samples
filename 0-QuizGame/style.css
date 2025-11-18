@@ -1,0 +1,227 @@
+/* Explicación básica de estilos para el cuestionario */
+
+/* 
+* {
+    #Aplica a TODOS los elementos
+}
+
+.container {
+    #Aplica a todas las clases "container"
+}
+.screen {
+    #Aplica a todas las clases "screen"
+}
+.answer-btn {
+    #Aplica a todas las clases "answer-btn"
+}
+
+.answer-btn:hover {
+    #Estilo cuando el mouse pasa por encima
+}
+.answer-btn.correct {
+    #Estilo cuando tiene la clase "correct"
+}
+.answer-btn.incorrect {
+    #Estilo cuando tiene la clase "incorrect"
+}
+
+body {
+    #Aplica a TODOS los <body>
+}
+
+#start-screen {
+    #Aplica específicamente a <div id="start-screen"> 
+}
+#quiz-screen {
+    #Aplica específicamente a <div id="quiz-screen">
+}
+*/
+
+/* CONTAINER GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: f5efe6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    font-family: sans-serif;
+}
+
+.container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* SCREENS */
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* START SCREEN */
+#start-screen h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #e86a33;
+}
+
+#start-screen p {
+    margin: 1rem;
+}
+
+.quiz-header {
+    margin-bottom: 10px;
+}
+
+#question-text {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    margin-bottom: 1rem;    
+}
+
+/* ANSWERS CONTAINERS */
+.answers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.answer-btn {
+    background-color: #f0f0f0;
+    color:#333;
+    border: 2px solid #eadbc8;
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.answer-btn:hover {
+    background-color: #eadbc8;
+    border-color: #dac0ae;
+}
+
+.answer-btn.correct {
+    background-color: #e6fff0;
+    border-color: #a3f0c4;
+    color: #29a745;
+}
+
+.answer-btn.incorrect {
+    background-color: #e6fff0;
+    border-color: #a3f0c4;
+    color: #dc3545;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #f8f0e5;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #e86a33;
+    width: 0%;
+}
+
+/* RESULT SCREEN */
+#result-screen h1 {
+    margin-bottom: 30px;
+    color: #e86a33;
+}
+
+.result-info {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.result-info p {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+    color: #333;
+}
+
+#result-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #555;
+}
+
+#restart-btn {
+    margin-top: 1rem;
+}
+
+button {
+    background-color: #e86a33;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d45b28;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 500px) {
+  /* when we hit 500px and below, implement the styles below */
+
+  .screen {
+    padding: 1rem;
+  }
+
+  #start-screen h1 {
+    font-size: 2rem;
+  }
+
+  #question-text {
+    font-size: 1.3rem;
+  }
+
+  .answer-btn {
+    padding: 12px;
+  }
+
+  button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
