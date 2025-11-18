@@ -169,6 +169,8 @@ function addTransaction(e) {
   transactionFormEl.reset();
 }
 ```
+- **[Explicación sobre el método 'preventDefault()'](https://developer.mozilla.org/es/docs/Web/API/Event/preventDefault)**
+- **[Explicación sobre el método 'push()'](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/push)**
 
 #### 2. updateTransactionList()
 ```js
@@ -220,6 +222,8 @@ function updateSummary() {
   expenseAmountEl.textContent = formatCurrency(expenses);
 }
 ```
+- **[Explicación sobre el método 'reduce()'](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)**
+- **[Explicación sobre el método 'filter()'](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)**
 
 #### 5. formatCurrency(number)
 ```js
@@ -230,6 +234,7 @@ function formatCurrency(number) {
   }).format(number);
 }
 ```
+- **[Explicación sobre el método 'Intl.NumberFormat()'](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)**
 
 #### 6. removeTransaction(id)
 ```js
@@ -240,6 +245,7 @@ function removeTransaction(id) {
   updateSummary();
 }
 ```
+- **[Explicación sobre el método 'JSON.stringify()'](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)**
 
 ### Event Listeners
 ```js
