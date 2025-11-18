@@ -1,9 +1,52 @@
 # Apuntes
 
 ## HTML
+### [Elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Cheatsheet)
 
-## CSS
-### Conceptos rápidos
+## [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+### [Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-shadow)
+- `margin: 0;`
+    - Elimina todos los márgenes externos por defecto de todos los elementos
+    - Evita espaciados inconsistentes entre navegadores
+
+- `padding: 0;`
+    - Elimina todos los rellenos internos por defecto
+    - Proporciona un punto de partida limpio para el diseño
+
+- `box-sizing: border-box;`
+    - **Cambia el modelo** de caja tradicional
+    - Con esta propiedad:
+        - `width` y `height` incluyen el contenido + padding + border
+        - Sin esta propiedad:
+            - `width` y `height` solo incluyen el contenido
+            - El padding y border se añaden por fuera
+- `background-color: #fff;`
+    - Fondo blanco para el contenedor
+- `padding: 20px;`
+    - Espacio interno de 20px en todos los lados
+- `border-radius: 8px;`
+    - Bordes redondeados de 8 píxeles
+- `box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);`
+    - Sombra exterior sutil
+    - Parámetros: ***offset-x*** | ***offset-y*** | ***blur-radius*** | ***color***
+- `max-width: 400px;`
+    - Ancho máximo de 400px
+    - Se adapta en pantallas más pequeñas
+- `width: 90%;`
+    - Ocupa el 90% del ancho disponible
+    - Responsive por defecto
+- `text-align: center;`
+    - Centra el texto horizontalmente
+- `justify-content: center;`
+    - Centra elementos hijos horizontalmente
+
+**⚠️ Ninguna de las DOS propiedades anteriores funciona sin `display:flex`**
+
+---
+### [Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors)
+
+
+### Conceptos rápidos sobre unidades
 - **`px`** — píxeles: unidad absoluta en pantalla (perfecta para control fino).  
 - **`rem`** — “root em”: relativa al tamaño de fuente raíz (`<html>`). Útil para tipografía y espaciado escalable.  
 - **`em`** — relativa al tamaño de fuente del elemento padre (puede cascada).  

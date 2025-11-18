@@ -1,99 +1,70 @@
-const balanceEl = document.getElementById("balance");
-const incomeAmountEl = document.getElementById("income-amount");
-const expenseAmountEl = document.getElementById("expense-amount");
-const transactionListEl = document.getElementById("transaction-list");
-const transactionFormEl = document.getElementById("transaction-form");
-const descriptionEl = document.getElementById("description");
-const amountEl = document.getElementById("amount");
+const addBookmarkBtn = document.getElementById("add-bookmark");
+const bookmarkList = document.getElementById("bookmark-list");
+const bookmarkNameInput = document.getElementById("bookmark-name");
+const bookmarkUrlInput = document.getElementById("bookmark-url")
 
-let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+document.addEventListener("DOMContentLoaded", loadBookmarks);
 
-transactionFormEl.addEventListener("submit", addTransaction);
+addBookmarkBtn.addEventListener("click", function () {
+  const name = bookmarkNameInput.value.trim();
+  const url = bookmarkUrlInput.value.trim();
 
-function addTransaction(e) {
-  e.preventDefault();
+  if (!name||!url) {
+    alert("Please enter both name  and URL.")
+    return
+  } else {
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      alert("Invalid URL format.")
+      return
+    }
 
-  // get form values
-  const description = descriptionEl.value.trim();
-  const amount = parseFloat(amountEl.value);
+    addBookmarkBtn(name, url);
+    saveBookmark(name, url);
 
-  transactions.push({
-    id: Date.now(),
-    description,
-    amount,
-  });
+    bookmarkNameInput.value="";
+    bookmarkUrlInput.value="";
+  }
+});
 
-  localStorage.setItem("transactions", JSON.stringify(transactions));
-
-  updateTransactionList();
-  updateSummary();
-
-  transactionFormEl.reset();
-}
-
-function updateTransactionList() {
-  transactionListEl.innerHTML = "";
-
-  const sortedTransactions = [...transactions].reverse();
-
-  sortedTransactions.forEach((transaction) => {
-    const transactionEl = createTransactionElement(transaction);
-    transactionListEl.appendChild(transactionEl);
-  });
-}
-
-function createTransactionElement(transaction) {
+function addBookmarkBtn(name, url) {
   const li = document.createElement("li");
-  li.classList.add("transaction");
-  li.classList.add(transaction.amount > 0 ? "income" : "expense");
+  const link = document.createElement("a");
 
-  li.innerHTML = `
-    <span>${transaction.description}</span>
-    <span>
-  
-    ${formatCurrency(transaction.amount)}
-      <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>
-    </span>
-  `;
+  link.href = url;
+  link.textContent = name;
+  link.target = "_blank";
 
-  return li;
+  const removeButton = document.createElement("button");
+  removeButton.textContent = "Remove";
+  removeButton.addEventListener("click", function () {
+    bookmarkList.removeChild(li);
+    removeBookmarkFromStorage(name, url);
+  });
+
+  li.appendChild(link);
+  li.appendChild(button);
+
+  bookmarkList.appendChild(li);
 }
 
-function updateSummary() {
-  // 100, -50, 200, -200 => 50
-  const balance = transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
-
-  const income = transactions
-    .filter((transaction) => transaction.amount > 0)
-    .reduce((acc, transaction) => acc + transaction.amount, 0);
-
-  const expenses = transactions
-    .filter((transaction) => transaction.amount < 0)
-    .reduce((acc, transaction) => acc + transaction.amount, 0);
-
-  // update ui => todo: fix the formatting
-  balanceEl.textContent = formatCurrency(balance);
-  incomeAmountEl.textContent = formatCurrency(income);
-  expenseAmountEl.textContent = formatCurrency(expenses);
+function getBookmarksFromStorage() {
+  const bookmarks = localStorage.getItem("bookmarks");
+  return bookmarks ? JSON.parse(bookmarks) : []
 }
 
-function formatCurrency(number) {
-  return new Intl.NumberFormat("sp-SP", {
-    style: "currency",
-    currency: "EUR",
-  }).format(number);
+function saveBookmark(name, url) {
+  const bookmarks = getBookmarksFromStorage();
+  bookmarks.push({name, url});
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
 }
 
-function removeTransaction(id) {
-  // filter out the one we wanted to delete
-  transactions = transactions.filter((transaction) => transaction.id !== id);
-
-  localStorage.setItem("transcations", JSON.stringify(transactions));
-
-  updateTransactionList();
-  updateSummary();
+function loadBookmarks() {
+  const bookmarks = getBookmarksFromStorage();
+  bookmarks.forEach((bookmark) => addBookmark(bookmark.name, bookmark.url));
 }
 
-// initial render
-updateTransactionList();
-updateSummary();
+function removeBookmarkFromStorage(name, url) {
+  let bookmarks = getBookmarksFromStorage();
+  bookmarks = bookmark.filter((bookmarks) => bookmark.name !== name || bookmark.url !== url);
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+}
