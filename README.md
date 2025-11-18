@@ -39,13 +39,15 @@
     - Centra el texto horizontalmente
 - `justify-content: center;`
     - Centra elementos hijos horizontalmente
+transition
+overflow
 
 **⚠️ Ninguna de las DOS propiedades anteriores funciona sin `display:flex`**
 
 ---
 ### [Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors)
 
-
+---
 ### Conceptos rápidos sobre unidades
 - **`px`** — píxeles: unidad absoluta en pantalla (perfecta para control fino).  
 - **`rem`** — “root em”: relativa al tamaño de fuente raíz (`<html>`). Útil para tipografía y espaciado escalable.  
@@ -59,9 +61,7 @@
 - **Unidades físicas** — `cm`, `mm`, `in`, etc. (para impresión, casi no en web).  
 - **Valor `0`** — no lleva unidad (`margin: 0`).
 
----
-
-### Explicación por unidad
+### Explicación detallada por unidad
 
 #### `px`
 - **Definición**: Unidad fija y precisa.  
@@ -131,3 +131,6 @@
 | **Espacados coherentes** | `rem` |
 
 ## JavaScript
+
+preventDefault()
+document.*
